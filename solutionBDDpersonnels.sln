@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33423.256
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "biblioBDDpersonnels", "biblioBDDpersonnels\biblioBDDpersonnels.csproj", "{544A9553-D17D-4742-880A-638638EA70D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "appliWPFBDDpersonnels", "appliWPFBDDpersonnels\appliWPFBDDpersonnels.csproj", "{CA1406E5-0B96-4BE8-AB4E-6D89D1FA6C26}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{544A9553-D17D-4742-880A-638638EA70D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{544A9553-D17D-4742-880A-638638EA70D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{544A9553-D17D-4742-880A-638638EA70D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{544A9553-D17D-4742-880A-638638EA70D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA1406E5-0B96-4BE8-AB4E-6D89D1FA6C26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA1406E5-0B96-4BE8-AB4E-6D89D1FA6C26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA1406E5-0B96-4BE8-AB4E-6D89D1FA6C26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA1406E5-0B96-4BE8-AB4E-6D89D1FA6C26}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9AAF2DF0-CA7C-4D91-80E2-EE574E015FC7}
+	EndGlobalSection
+EndGlobal
