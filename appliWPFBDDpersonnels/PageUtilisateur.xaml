@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="PageUtilisateur" Height="450" Width="800">
     <Grid>
-        <Image x:Name="imagePersonnels" HorizontalAlignment="Left" Height="100" Margin="684,10,0,0" VerticalAlignment="Top" Width="100"/>
+        <Image x:Name="imagePersonnels" HorizontalAlignment="Left" Height="292" Margin="498,10,0,0" VerticalAlignment="Top" Width="286"/>
         <Label x:Name="labelNomPersonnels" Content="Label" HorizontalAlignment="Left" Margin="53,40,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelPrenomPersonnels" Content="Label" HorizontalAlignment="Left" Margin="53,106,0,0" VerticalAlignment="Top"/>
 

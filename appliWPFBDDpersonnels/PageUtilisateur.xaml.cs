@@ -2,6 +2,7 @@
 using biblioBDDpersonnels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,33 +28,57 @@ namespace appliWPFBDDpersonnels
         {
             InitializeComponent();
             _personnel = personnel;
-            AfficherNom(personnel);
-            AfficherPrenom(personnel);
+            AfficherNom(RecupererLesPersonnels());
+            AfficherPrenom(RecupererLesPersonnels());
+            AfficherImage(RecupererLesPersonnels());
         }
 
-        public void AfficherNom(string personnel)
+        public void AfficherNom(List<Personnel> personnels)
         {
-            string Nom = personnel.Split(' ')[0].ToUpper();
-            List<Personnel> personnels = RecupererLesPersonnels();
-            foreach (var personne in personnels)
-            {
-                if (personne.Nom.ToString() == Nom)
-                {
+            labelNomPersonnels.Content=TrouverPersonnel(personnels).Nom.ToString();
+        }
 
-                }
+        public void AfficherPrenom(List<Personnel> personnels)
+        {
+            labelPrenomPersonnels.Content = TrouverPersonnel(personnels).Prenom.ToString();
+        }
+
+        public void AfficherImage(List<Personnel> personnels)
+        {
+            imagePersonnels.Source = GetImageFromByte(TrouverPersonnel(personnels).Photo);
+        }
+
+        public BitmapImage GetImageFromByte(byte[] bitmapImag)
+        {
+            using (MemoryStream stream = new MemoryStream(bitmapImag))
+            {
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.StreamSource = stream;
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.EndInit();
+                return bitmapImage;
             }
         }
 
-        public void AfficherPrenom(string personnel)
-        {
-            labelPrenomPersonnels.Content = personnel.Split(' ')[1];
-        }
 
         public List<Personnel> RecupererLesPersonnels()
         {
             bddpersonnels = new CBDDPersonnels(); // initilise la classe, se connecte à la BDD
             List<Personnel> personnels = bddpersonnels.getAllPersonnels();
             return personnels;
+        }
+
+        public Personnel TrouverPersonnel(List<Personnel> personnels)
+        {
+            foreach (var personnel in personnels)
+            {
+                if (personnel.Nom.ToString() == _personnel.Split(' ')[0])
+                {
+                    return personnel;
+                }
+            }
+            return new Personnel();
         }
     }
 }
