@@ -41,7 +41,7 @@ namespace appliWPFBDDpersonnels
         public void AfficherServices(List<Service> services, ComboBox comboBox)
         {
             comboBox.Items.Clear();
-            comboBox.Items.Add("Defaut");
+            comboBox.Items.Add("");
             foreach (var service in services)
             {
                 comboBox.Items.Add(service.Intitule);
@@ -51,7 +51,7 @@ namespace appliWPFBDDpersonnels
         public void AfficherFonctions(List<Fonction> fonctions, ComboBox comboBox)
         {
             comboBox.Items.Clear();
-            comboBox.Items.Add("Defaut");
+            comboBox.Items.Add("");
             foreach (var fonction in fonctions)
             {
                 comboBox.Items.Add(fonction.Intitule);
@@ -100,7 +100,7 @@ namespace appliWPFBDDpersonnels
             listview.Items.Clear();
             foreach (var personnel in personnels)
             {
-                    if(comboBoxServices.SelectedItem.ToString() == personnel.Service.Intitule)
+                    if(comboBoxServices.SelectedItem.ToString() == personnel.Service.Intitule || comboboxServices.SelectedItem.ToString() == "" || comboboxServices.SelectedItem.ToString() == "Defaut")
                     {
                         listview.Items.Add(personnel.Nom + " " + personnel.Prenom);
                     }                
@@ -113,7 +113,7 @@ namespace appliWPFBDDpersonnels
             listview.Items.Clear();
             foreach (var personnel in personnels)
             {
-                if (comboBoxFonctions.SelectedItem.ToString() == personnel.Fonction.Intitule)
+                if (comboBoxFonctions.SelectedItem.ToString() == personnel.Fonction.Intitule || comboboxFonctions.SelectedItem.ToString() == "" || comboBoxFonctions.SelectedItem.ToString() == "Defaut")
                 {
                     listview.Items.Add(personnel.Nom + " " + personnel.Prenom);
                 }
@@ -123,40 +123,105 @@ namespace appliWPFBDDpersonnels
 
         private void comboboxServices_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (comboboxServices.SelectedItem.ToString() == "Defaut")
+            try
             {
-                comboboxFonctions.IsEnabled = true;
+                if (comboboxServices.SelectedItem.ToString() == "")
+                {
+                    //comboboxFonctions.IsEnabled = true;
+                    List<Personnel> personnels = RecupererLesPersonnels();
+                    AfficherLesPersonnelsParServices(personnels, listeviewPersonnels, comboboxServices, comboboxServices.SelectedItem.ToString());
+                }
+                else
+                {
+                    //comboboxFonctions.IsEnabled = false;
+                    comboboxFonctions.SelectedItem = "";
+                    //comboboxServices.IsEnabled = true;
+                    List<Personnel> personnels = RecupererLesPersonnels();
+                    AfficherLesPersonnelsParServices(personnels, listeviewPersonnels, comboboxServices, comboboxServices.SelectedItem.ToString());
+                }
             }
-            else
+            catch (NullReferenceException ex)
             {
-                comboboxFonctions.IsEnabled = false;
-                comboboxServices.IsEnabled = true;
-                List<Personnel> personnels = RecupererLesPersonnels();
-                AfficherLesPersonnelsParServices(personnels, listeviewPersonnels, comboboxServices, comboboxServices.SelectedItem.ToString());
+
             }
         }
 
         private void comboboxFonctions_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (comboboxFonctions.SelectedItem.ToString() == "Defaut")
+            try
             {
-                comboboxServices.IsEnabled = true;
+                if (comboboxFonctions.SelectedItem.ToString() == "")
+                {
+                    //comboboxServices.IsEnabled = true;
+                    List<Personnel> personnels = RecupererLesPersonnels();
+                    AfficherLesPersonnelsParFonctions(personnels, listeviewPersonnels, comboboxFonctions, comboboxFonctions.SelectedItem.ToString());
+                }
+                else
+                {
+
+                    //comboboxServices.IsEnabled = false;
+                    comboboxServices.SelectedItem = "";
+                    //comboboxFonctions.IsEnabled = true;
+                    List<Personnel> personnels = RecupererLesPersonnels();
+                    AfficherLesPersonnelsParFonctions(personnels, listeviewPersonnels, comboboxFonctions, comboboxFonctions.SelectedItem.ToString());
+                }
             }
-            else
+            catch (NullReferenceException ex)
             {
 
-                comboboxServices.IsEnabled = false;
-                comboboxFonctions.IsEnabled = true;
-                List<Personnel> personnels = RecupererLesPersonnels();
-                AfficherLesPersonnelsParFonctions(personnels, listeviewPersonnels, comboboxFonctions, comboboxFonctions.SelectedItem.ToString());
             }
         }
 
         private void listeviewPersonnels_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           string personnel = listeviewPersonnels.SelectedItem.ToString();
-            PageUtilisateur pageUtilisateur = new PageUtilisateur(personnel);
-            pageUtilisateur.ShowDialog();
+            string personnel;
+            try
+            {
+                personnel = listeviewPersonnels.SelectedItem.ToString();
+                PageUtilisateur pageUtilisateur = new PageUtilisateur(personnel);
+                pageUtilisateur.ShowDialog();
+            }
+            catch (NullReferenceException ex)
+            {
+                personnel = "";
+            }
+            
+
+        }
+
+        private void inputNom_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (inputNom.Text != "")
+            {
+                for (int i = listeviewPersonnels.Items.Count -1; i >= 0; i--)
+                {
+                    var item = listeviewPersonnels.Items[i];
+                    if (item.ToString().ToLower().Contains(inputNom.Text.ToLower()))
+                    {
+                        
+                    }
+                    else
+                    {
+                        listeviewPersonnels.Items.Remove(item);
+                    }
+                }
+            }
+            else
+            {
+                List<Service> services = RecupererLesServices();
+                TrierLesServices(services);
+                AfficherServices(services, comboboxServices);
+
+                List<Fonction> fonctions = RecupererLesFonctions();
+                TrierLesFonctions(fonctions);
+                AfficherFonctions(fonctions, comboboxFonctions);
+                AfficherLesPersonnelsParFonctions(RecupererLesPersonnels(), listeviewPersonnels, comboboxFonctions, "");
+            }
+        }
+
+        private void boutonQuitter_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

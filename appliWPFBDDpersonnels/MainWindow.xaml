@@ -9,7 +9,7 @@
     <Grid>
         <DataGrid x:Name="datagridServices" HorizontalAlignment="Left" Height="357" Margin="86,29,0,0" VerticalAlignment="Top" Width="258"/>
         <ComboBox x:Name="comboboxServices" HorizontalAlignment="Left" Margin="436,29,0,0" VerticalAlignment="Top" Width="236" SelectionChanged="comboboxServices_SelectionChanged"/>
-        <ListView x:Name="listeviewPersonnels" HorizontalAlignment="Left" Height="246" Margin="436,130,0,0" VerticalAlignment="Top" Width="272" SelectionChanged="listeviewPersonnels_SelectionChanged">
+        <ListView x:Name="listeviewPersonnels" HorizontalAlignment="Left" Height="246" Margin="436,140,0,0" VerticalAlignment="Top" Width="272" SelectionChanged="listeviewPersonnels_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
@@ -18,6 +18,8 @@
         </ListView>
         <ComboBox x:Name="comboboxFonctions" HorizontalAlignment="Left" Margin="434,75,0,0" VerticalAlignment="Top" Width="238" SelectionChanged="comboboxFonctions_SelectionChanged">
         </ComboBox>
+        <TextBox x:Name="inputNom" HorizontalAlignment="Left" Height="23" Margin="434,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="238" TextChanged="inputNom_TextChanged"/>
+        <Button x:Name="boutonQuitter" Content="Quitter" HorizontalAlignment="Left" Margin="709,391,0,0" VerticalAlignment="Top" Width="75" Click="boutonQuitter_Click"/>
 
     </Grid>
 </Window>
