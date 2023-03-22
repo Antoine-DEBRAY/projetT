@@ -15,7 +15,7 @@ namespace biblioBDDpersonnels
             dc = new BddpersonnelDataContext(); // connection
         }
 
-        public List<Service> getAllServices()
+        public virtual List<Service> getAllServices()
         {
             try
             {
@@ -27,7 +27,7 @@ namespace biblioBDDpersonnels
             }
         }
 
-        public List<Personnel> getAllPersonnels()
+        public virtual List<Personnel> getAllPersonnels()
         {
             try
             {
@@ -39,7 +39,7 @@ namespace biblioBDDpersonnels
             }
         }
 
-        public List<Fonction> getAllFonctions()
+        public virtual List<Fonction> getAllFonctions()
         {
             try
             {

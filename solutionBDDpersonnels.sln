@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "biblioBDDpersonnels", "bibl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "appliWPFBDDpersonnels", "appliWPFBDDpersonnels\appliWPFBDDpersonnels.csproj", "{CA1406E5-0B96-4BE8-AB4E-6D89D1FA6C26}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjetT", "TestProjetT\TestProjetT.csproj", "{DA40A7B9-6249-4CB9-A55F-9DC3054B75BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{CA1406E5-0B96-4BE8-AB4E-6D89D1FA6C26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA1406E5-0B96-4BE8-AB4E-6D89D1FA6C26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA1406E5-0B96-4BE8-AB4E-6D89D1FA6C26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA40A7B9-6249-4CB9-A55F-9DC3054B75BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA40A7B9-6249-4CB9-A55F-9DC3054B75BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA40A7B9-6249-4CB9-A55F-9DC3054B75BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA40A7B9-6249-4CB9-A55F-9DC3054B75BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
