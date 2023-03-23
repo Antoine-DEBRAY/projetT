@@ -27,58 +27,107 @@ namespace appliWPFBDDpersonnels
         public PageUtilisateur(string personnel)
         {
             InitializeComponent();
-            _personnel = personnel;
-            AfficherNom(RecupererLesPersonnels());
-            AfficherPrenom(RecupererLesPersonnels());
-            AfficherImage(RecupererLesPersonnels());
+            try
+            {
+                _personnel = personnel;
+                AfficherNom(RecupererLesPersonnels());
+                AfficherPrenom(RecupererLesPersonnels());
+                AfficherImage(RecupererLesPersonnels());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void AfficherNom(List<Personnel> personnels)
         {
-            labelNomPersonnels.Content=TrouverPersonnel(personnels).Nom.ToString();
+            try
+            {
+                labelNomPersonnels.Content = TrouverPersonnel(personnels).Nom.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void AfficherPrenom(List<Personnel> personnels)
         {
-            labelPrenomPersonnels.Content = TrouverPersonnel(personnels).Prenom.ToString();
+            try
+            {
+                labelPrenomPersonnels.Content = TrouverPersonnel(personnels).Prenom.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void AfficherImage(List<Personnel> personnels)
         {
-            imagePersonnels.Source = GetImageFromByte(TrouverPersonnel(personnels).Photo);
+            try
+            {
+                imagePersonnels.Source = GetImageFromByte(TrouverPersonnel(personnels).Photo);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public BitmapImage GetImageFromByte(byte[] bitmapImag)
         {
-            using (MemoryStream stream = new MemoryStream(bitmapImag))
+            try
             {
-                BitmapImage bitmapImage = new BitmapImage();
-                bitmapImage.BeginInit();
-                bitmapImage.StreamSource = stream;
-                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                bitmapImage.EndInit();
-                return bitmapImage;
+                using (MemoryStream stream = new MemoryStream(bitmapImag))
+                {
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.BeginInit();
+                    bitmapImage.StreamSource = stream;
+                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmapImage.EndInit();
+                    return bitmapImage;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
 
         public List<Personnel> RecupererLesPersonnels()
         {
-            bddpersonnels = new CBDDPersonnels(); // initilise la classe, se connecte à la BDD
-            List<Personnel> personnels = bddpersonnels.getAllPersonnels();
-            return personnels;
+            try
+            {
+                bddpersonnels = new CBDDPersonnels(); // initilise la classe, se connecte à la BDD
+                List<Personnel> personnels = bddpersonnels.getAllPersonnels();
+                return personnels;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public Personnel TrouverPersonnel(List<Personnel> personnels)
         {
-            foreach (var personnel in personnels)
+            try
             {
-                if (personnel.Nom.ToString() == _personnel.Split(' ')[0])
+                foreach (var personnel in personnels)
                 {
-                    return personnel;
+                    if (personnel.Nom.ToString() == _personnel.Split(' ')[0])
+                    {
+                        return personnel;
+                    }
                 }
+                return new Personnel();
             }
-            return new Personnel();
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

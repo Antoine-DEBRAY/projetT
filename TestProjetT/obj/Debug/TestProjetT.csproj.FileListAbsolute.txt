@@ -1,3 +1,4 @@
+C:\1SNIR\miniProjet2023\solutionBDDpersonnels\TestProjetT\obj\Debug\TestProjetT.csproj.CoreCompileInputs.cache
 C:\1SNIR\miniProjet2023\solutionBDDpersonnels\TestProjetT\bin\Debug\fr\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.resources.dll
 C:\1SNIR\miniProjet2023\solutionBDDpersonnels\TestProjetT\bin\Debug\fr\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.resources.dll
 C:\1SNIR\miniProjet2023\solutionBDDpersonnels\TestProjetT\bin\Debug\fr\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
@@ -33,7 +34,6 @@ C:\1SNIR\miniProjet2023\solutionBDDpersonnels\TestProjetT\bin\Debug\Moq.xml
 C:\1SNIR\miniProjet2023\solutionBDDpersonnels\TestProjetT\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\1SNIR\miniProjet2023\solutionBDDpersonnels\TestProjetT\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\1SNIR\miniProjet2023\solutionBDDpersonnels\TestProjetT\obj\Debug\TestProjetT.csproj.AssemblyReference.cache
-C:\1SNIR\miniProjet2023\solutionBDDpersonnels\TestProjetT\obj\Debug\TestProjetT.csproj.CoreCompileInputs.cache
 C:\1SNIR\miniProjet2023\solutionBDDpersonnels\TestProjetT\obj\Debug\TestProjetT.csproj.CopyComplete
 C:\1SNIR\miniProjet2023\solutionBDDpersonnels\TestProjetT\obj\Debug\TestProjetT.dll
 C:\1SNIR\miniProjet2023\solutionBDDpersonnels\TestProjetT\obj\Debug\TestProjetT.pdb

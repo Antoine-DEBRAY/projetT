@@ -1,0 +1,10 @@
+C:\1SNIR\miniProjet2023\solutionBDDpersonnels\biblioBDDpersonnels\bin\x64\Test\biblioBDDpersonnels.dll.config
+C:\1SNIR\miniProjet2023\solutionBDDpersonnels\biblioBDDpersonnels\bin\x64\Test\biblioBDDpersonnels.dll
+C:\1SNIR\miniProjet2023\solutionBDDpersonnels\biblioBDDpersonnels\bin\x64\Test\Devart.Data.dll
+C:\1SNIR\miniProjet2023\solutionBDDpersonnels\biblioBDDpersonnels\bin\x64\Test\Devart.Data.Linq.dll
+C:\1SNIR\miniProjet2023\solutionBDDpersonnels\biblioBDDpersonnels\bin\x64\Test\Devart.Data.MySql.dll
+C:\1SNIR\miniProjet2023\solutionBDDpersonnels\biblioBDDpersonnels\bin\x64\Test\Devart.Data.MySql.Linq.dll
+C:\1SNIR\miniProjet2023\solutionBDDpersonnels\biblioBDDpersonnels\obj\x64\Test\biblioBDDpersonnels.csproj.AssemblyReference.cache
+C:\1SNIR\miniProjet2023\solutionBDDpersonnels\biblioBDDpersonnels\obj\x64\Test\biblioBDDpersonnels.csproj.CoreCompileInputs.cache
+C:\1SNIR\miniProjet2023\solutionBDDpersonnels\biblioBDDpersonnels\obj\x64\Test\biblioBDDpersonnels.csproj.CopyComplete
+C:\1SNIR\miniProjet2023\solutionBDDpersonnels\biblioBDDpersonnels\obj\x64\Test\biblioBDDpersonnels.dll
