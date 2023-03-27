@@ -23,3 +23,4 @@ C:\1SNIR\miniProjet2023\solutionBDDpersonnels\appliWPFBDDpersonnels\obj\Debug\ap
 C:\1SNIR\miniProjet2023\solutionBDDpersonnels\appliWPFBDDpersonnels\obj\Debug\appliWPFBDDpersonnels.csproj.CopyComplete
 C:\1SNIR\miniProjet2023\solutionBDDpersonnels\appliWPFBDDpersonnels\obj\Debug\appliWPFBDDpersonnels.exe
 C:\1SNIR\miniProjet2023\solutionBDDpersonnels\appliWPFBDDpersonnels\obj\Debug\appliWPFBDDpersonnels.pdb
+C:\1SNIR\miniProjet2023\solutionBDDpersonnels\appliWPFBDDpersonnels\bin\Debug\appliWPFBDDpersonnels.xml

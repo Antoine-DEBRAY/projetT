@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>appliWPFBDDpersonnels</name>
+    </assembly>
+    <members>
+        <member name="T:appliWPFBDDpersonnels.App">
+            <summary>
+            Logique d'interaction pour App.xaml
+            </summary>
+            <summary>
+            App
+            </summary>
+        </member>
+        <member name="M:appliWPFBDDpersonnels.App.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:appliWPFBDDpersonnels.App.Main">
+            <summary>
+            Application Entry Point.
+            </summary>
+        </member>
+        <member name="T:appliWPFBDDpersonnels.MainWindow">
+            <summary>
+            Logique d'interaction pour MainWindow.xaml
+            </summary>
+            <summary>
+            MainWindow
+            </summary>
+        </member>
+        <member name="M:appliWPFBDDpersonnels.MainWindow.#ctor">
+            <summary>
+            Fenêtre principale de l'application
+            </summary>
+        </member>
+        <member name="M:appliWPFBDDpersonnels.MainWindow.AfficherServices(System.Collections.Generic.List{BddpersonnelContext.Service},System.Windows.Controls.ComboBox)">
+            <summary>
+            Affiche les services dans la combobox correspondante
+            </summary>
+            <param name="services">Liste de services</param>
+            <param name="comboBox">Combobox pour l'affichage</param>
+        </member>
+        <member name="M:appliWPFBDDpersonnels.MainWindow.AfficherFonctions(System.Collections.Generic.List{BddpersonnelContext.Fonction},System.Windows.Controls.ComboBox)">
+            <summary>
+            Affiche les fonctions dans la combobox correspondante
+            </summary>
+            <param name="fonctions">Liste des fonctions</param>
+            <param name="comboBox">Combobox fonctions</param>
+        </member>
+        <member name="M:appliWPFBDDpersonnels.MainWindow.AfficherLesPersonnelsParServices(System.Collections.Generic.List{BddpersonnelContext.Personnel},System.Windows.Controls.ListView,System.Windows.Controls.ComboBox)">
+            <summary>
+            Depuis une liste de tous les personnels, ne renvoie que ceux dont le service correspond au paramètre passé
+            </summary>
+            <param name="personnels">Liste des personnels</param>
+            <param name="listview">ListeView pour l'affichage</param>
+            <param name="comboBoxServices">Combobox des services</param>
+        </member>
+        <member name="M:appliWPFBDDpersonnels.MainWindow.AfficherLesPersonnelsParFonctions(System.Collections.Generic.List{BddpersonnelContext.Personnel},System.Windows.Controls.ListView,System.Windows.Controls.ComboBox)">
+            <summary>
+            Depuis une liste de tous les personnels, ne renvoie que ceux dont la fonction correspond au paramètre passé
+            </summary>
+            <param name="personnels">Liste des personnels</param>
+            <param name="listview">ListeView a utiliser</param>
+            <param name="comboBoxFonctions">Combobox fonctions</param>
+        </member>
+        <member name="M:appliWPFBDDpersonnels.MainWindow.comboboxServices_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            quand la sélection du service change
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:appliWPFBDDpersonnels.MainWindow.comboboxFonctions_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            quand la sélection de la fonction change
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:appliWPFBDDpersonnels.MainWindow.listeviewPersonnels_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+             quand on clique sur un personnel de la listeview
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:appliWPFBDDpersonnels.MainWindow.inputNom_TextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
+            <summary>
+            quand le text de recherche change
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:appliWPFBDDpersonnels.MainWindow.boutonQuitter_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Boutton Quitter
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:appliWPFBDDpersonnels.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:appliWPFBDDpersonnels.PageUtilisateur">
+            <summary>
+            Logique d'interaction pour PageUtilisateur.xaml
+            </summary>
+            <summary>
+            PageUtilisateur
+            </summary>
+        </member>
+        <member name="M:appliWPFBDDpersonnels.PageUtilisateur.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:appliWPFBDDpersonnels.Properties.Resources">
+            <summary>
+              Une classe de ressource fortement typée destinée, entre autres, à la consultation des chaînes localisées.
+            </summary>
+        </member>
+        <member name="P:appliWPFBDDpersonnels.Properties.Resources.ResourceManager">
+            <summary>
+              Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
+            </summary>
+        </member>
+        <member name="P:appliWPFBDDpersonnels.Properties.Resources.Culture">
+            <summary>
+              Remplace la propriété CurrentUICulture du thread actuel pour toutes
+              les recherches de ressources à l'aide de cette classe de ressource fortement typée.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -68,6 +68,7 @@ namespace biblioBDDpersonnels
                     throw new ArgumentException("Il n'y a aucun service à trier");
                 }
                 services.Sort(Service.ComparerLabelServices);
+                services.Insert(0, new Service { Id = 666, Intitule = "Tous", Personnels = null });
             }
             catch (Exception ex)
             {
@@ -82,6 +83,7 @@ namespace biblioBDDpersonnels
                     throw new ArgumentException("Il n'y a aucune fonction à trier");
                 }
                 fonctions.Sort(Fonction.ComparerLabelFonctions);
+                fonctions.Insert(0, new Fonction { Id = 666, Intitule = "Tous", Personnels = null });
             }
             catch (Exception ex)
             {
