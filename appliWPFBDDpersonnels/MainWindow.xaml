@@ -7,8 +7,7 @@
         mc:Ignorable="d"
         Title="Appli gestion personnels" Height="450" Width="800">
     <Grid>
-        <DataGrid x:Name="datagridServices" HorizontalAlignment="Left" Height="65" Margin="86,321,0,0" VerticalAlignment="Top" Width="58"/>
-        <ListView x:Name="listeviewPersonnels" HorizontalAlignment="Left" Height="246" Margin="436,140,0,0" VerticalAlignment="Top" Width="272" SelectionChanged="listeviewPersonnels_SelectionChanged">
+        <ListView x:Name="listeviewPersonnels" HorizontalAlignment="Left" Height="246" Margin="24,124,0,0" VerticalAlignment="Top" Width="332" SelectionChanged="listeviewPersonnels_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
@@ -16,11 +15,13 @@
             </ListView.View>
         </ListView>
         <ComboBox x:Name="comboboxFonctions" HorizontalAlignment="Left" Margin="202,29,0,0" VerticalAlignment="Top" Width="154" SelectionChanged="comboboxFonctions_SelectionChanged" IsReadOnly="True" MouseEnter="comboboxFonctions_MouseEnter" IsMouseDirectlyOverChanged="comboboxFonctions_IsMouseDirectlyOverChanged" StaysOpenOnEdit="True" Initialized="comboboxFonctions_Initialized" IsEditable="True"/>
-        <TextBox x:Name="inputNom" HorizontalAlignment="Left" Height="23" Margin="434,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="238" TextChanged="inputNom_TextChanged"/>
+        <TextBox x:Name="inputNom" HorizontalAlignment="Left" Height="23" Margin="68,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="238" TextChanged="inputNom_TextChanged"/>
         <Button x:Name="boutonQuitter" Content="Quitter" HorizontalAlignment="Left" Margin="709,391,0,0" VerticalAlignment="Top" Width="75" Click="boutonQuitter_Click"/>
         <ComboBox x:Name="comboboxServices" HorizontalAlignment="Left" Margin="24,29,0,0" VerticalAlignment="Top" Width="154" IsReadOnly="True" MouseEnter="comboboxServices_MouseEnter" IsMouseDirectlyOverChanged="comboboxServices_IsMouseDirectlyOverChanged" SelectionChanged="comboboxServices_SelectionChanged" StaysOpenOnEdit="True" Initialized="comboboxServices_Initialized" IsEditable="True"/>
         <Label x:Name="labelServices" HorizontalContentAlignment="Center" Content="Services" HorizontalAlignment="Left" Margin="24,3,0,0" VerticalAlignment="Top" Width="154" FontWeight="Bold"/>
         <Label x:Name="labelFonctions" HorizontalContentAlignment="Center" Content="Fonctions" HorizontalAlignment="Left" Margin="202,3,0,0" VerticalAlignment="Top" Width="154" FontWeight="Bold"/>
+        <Image x:Name="imagePersonnels" HorizontalAlignment="Left" Height="119" Margin="597,137,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label x:Name="labelPersonnels" Content="" HorizontalAlignment="Left" Margin="474,137,0,0" VerticalAlignment="Top" Width="88"/>
 
     </Grid>
 </Window>

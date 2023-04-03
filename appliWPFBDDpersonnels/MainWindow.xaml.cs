@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BddpersonnelContext;
 using biblioBDDpersonnels;
+using Path = System.IO.Path;
 
 namespace appliWPFBDDpersonnels
 {
@@ -32,7 +34,7 @@ namespace appliWPFBDDpersonnels
             InitializeComponent(); // toujours en premier NE PAS TOUCHER
             try
             {
-                bddpersonnels = new CBDDPersonnels();
+                bddpersonnels = new CBDDPersonnels(); // connection à la bdd
                 List<Service> services = bddpersonnels.RecupererLesServices(); // Récupère les services
                 bddpersonnels.TrierLesServices(services); // Trie les services
                 AfficherServices(services, comboboxServices); // Affiche les services dans la combobox
@@ -46,7 +48,6 @@ namespace appliWPFBDDpersonnels
                 MessageBox.Show(ex.Message);
             }
         }
-
         /// <summary>
         /// Affiche les services dans la combobox correspondante
         /// </summary>
@@ -62,6 +63,7 @@ namespace appliWPFBDDpersonnels
                 {
                     comboBox.Items.Add(service.Intitule); // on l'ajoute dans le combobox
                 }
+                comboBox.SelectedIndex = 0; // on selectionne "Tous"
             }
             catch (Exception ex)
             {
@@ -83,13 +85,13 @@ namespace appliWPFBDDpersonnels
                 {
                     comboBox.Items.Add(fonction.Intitule); // on l'ajoute dans le combobox
                 }
+                comboBox.SelectedIndex = 0; // on selectionne "tous"
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-
         /// <summary>
         /// Depuis une liste de tous les personnels, ne renvoie que ceux dont le service correspond au paramètre passé
         /// </summary>
@@ -101,14 +103,14 @@ namespace appliWPFBDDpersonnels
             try
             {
                 listview.Items.Clear(); // Nettoie la listeview
-                if (comboboxServices.HasItems == false)
+                if (comboboxServices.SelectedItem == null) // si il n'y a aucun service selectionné
                 {
-                    comboboxServices.SelectedIndex = 0;
+                    comboboxServices.SelectedIndex = 0; // on sélectionne "Tous"
                 }
                 foreach (var personnel in personnels) // pour chaque personnel de la liste
                 {         
-                    if (comboBoxServices.SelectedItem == null || comboBoxServices.SelectedItem.ToString() == personnel.Service.Intitule || comboboxServices.SelectedItem.ToString() == "Tous")
-                    { // 2 cas possible : soit il y a un item selectionné et on affiche le personnel correspond soit l'item sélectionné est "" est on affiche tout
+                    if (comboBoxServices.SelectedItem.ToString() == personnel.Service.Intitule || comboboxServices.SelectedItem.ToString() == "Tous")
+                    { // 2 cas possible : soit il y a un item selectionné et on affiche le personnel correspond soit l'item sélectionné est "Tous" et on affiche tout
                         listview.Items.Add(personnel.Nom + " " + personnel.Prenom); // affiche le nom et le prenom de la personne
                     }
                 }
@@ -129,15 +131,15 @@ namespace appliWPFBDDpersonnels
             try
             {
                 listview.Items.Clear(); // Nettoie la listeview
-                if (comboBoxFonctions.HasItems == false)
+                if (comboBoxFonctions.SelectedItem == null) // si il n'y a auncune fonction selectionné
                 {
-                    comboBoxFonctions.SelectedIndex = 0;
+                    comboBoxFonctions.SelectedIndex = 0; // on sélectionne "Tous"
                 }
                 foreach (var personnel in personnels) // pour chaque personnel dans la liste
                 {
-                    if (comboBoxFonctions.SelectedItem == null || comboBoxFonctions.SelectedItem.ToString() == personnel.Fonction.Intitule || comboBoxFonctions.SelectedItem.ToString() == "Tous")
-                    { // 2 cas possible: soit il y a un item selectionné et on affiche le personnel correspondant soit l'item sélectionné est "" est on affiche tout
-                        listview.Items.Add(personnel.Nom + " " + personnel.Prenom); // affiche le nom et le prénom de la personne 
+                    if (comboBoxFonctions.SelectedItem.ToString() == personnel.Fonction.Intitule || comboBoxFonctions.SelectedItem.ToString() == "Tous")
+                    { // 2 cas possible: soit il y a un item selectionné et on affiche le personnel correspondant soit l'item sélectionné est "Tous" et on affiche tout
+                        listview.Items.Add(personnel.Nom + " " + personnel.Prenom); // affiche le nom et le prénom de la personne
                     }
                 }
             }
@@ -146,7 +148,6 @@ namespace appliWPFBDDpersonnels
                 MessageBox.Show(ex.Message);
             }
         }
-
         /// <summary>
         /// quand la sélection du service change
         /// </summary>
@@ -156,31 +157,28 @@ namespace appliWPFBDDpersonnels
         {
             try
             {
-                if (comboboxFonctions.SelectedItem == null || comboboxFonctions.SelectedItem.ToString() == "Tous")
+                List<Personnel> TousLesPersonnels = bddpersonnels.RecupererLesPersonnels(); // recupere les personnels
+                if (comboboxFonctions.SelectedItem == null || comboboxFonctions.SelectedItem.ToString() == "Tous") // si aucun ou toutes les fonctions sont sélectionnées
                 {
-                    List<Personnel> personnels = bddpersonnels.RecupererLesPersonnels(); // on récupère les personnels
-                    AfficherLesPersonnelsParServices(personnels, listeviewPersonnels, comboboxServices);
+                    AfficherLesPersonnelsParServices(TousLesPersonnels, listeviewPersonnels, comboboxServices); // on affiche les personnels
                 }
-                else
-                {
-                    List<Personnel> TousLesPersonnels = bddpersonnels.RecupererLesPersonnels();
-                    for (int i = TousLesPersonnels.Count; i >0; i--)
+                else // si il y a une fonction de selectionné
+                {                    
+                    for (int i = TousLesPersonnels.Count; i >0; i--) // pour chaque personnel en partant de la fin
                     {
-                        if (TousLesPersonnels[i-1].Fonction.Intitule.ToString() != comboboxFonctions.SelectedItem.ToString())
+                        if (TousLesPersonnels[i-1].Fonction.Intitule.ToString() != comboboxFonctions.SelectedItem.ToString()) // si il ne correspond pas à la bonne fonction
                         {
-                            TousLesPersonnels.Remove(TousLesPersonnels[i-1]);
+                            TousLesPersonnels.Remove(TousLesPersonnels[i-1]); // on le retire
                         }
                     }
-                    AfficherLesPersonnelsParServices(TousLesPersonnels, listeviewPersonnels, comboboxServices);
+                    AfficherLesPersonnelsParServices(TousLesPersonnels, listeviewPersonnels, comboboxServices); // on affiche les personnels
                 }
-                // on affiche les personnels correspondants au service sélectionné
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-
         /// <summary>
         /// quand la sélection de la fonction change
         /// </summary>
@@ -190,32 +188,28 @@ namespace appliWPFBDDpersonnels
         {
             try
             {
-                if (comboboxServices.SelectedItem == null || comboboxServices.SelectedItem.ToString() == "Tous")
+                List<Personnel> TousLesPersonnels = bddpersonnels.RecupererLesPersonnels(); // recupere les personnels
+                if (comboboxServices.SelectedItem == null || comboboxServices.SelectedItem.ToString() == "Tous") // si aucun ou tous les services sont selectionnes
                 {
-                    List<Personnel> personnels = bddpersonnels.RecupererLesPersonnels(); // on récupère les personnels
-                    AfficherLesPersonnelsParFonctions(personnels, listeviewPersonnels, comboboxFonctions);
-                    // on affiche les personnels correspondants à la fonction sélectionnée
+                    AfficherLesPersonnelsParFonctions(TousLesPersonnels, listeviewPersonnels, comboboxFonctions); // on affiche les personnels
                 }
-                else
-                {
-                    List<Personnel> TousLesPersonnels = bddpersonnels.RecupererLesPersonnels();
-                    for (int i = TousLesPersonnels.Count; i>0;i--)
+                else // si il y a un service de selectionné
+                {                    
+                    for (int i = TousLesPersonnels.Count; i>0;i--) // pour chaque personnel en partant de la fin
                     {
-                        if (TousLesPersonnels[i-1].Service.Intitule.ToString() != comboboxServices.SelectedItem.ToString())
+                        if (TousLesPersonnels[i-1].Service.Intitule.ToString() != comboboxServices.SelectedItem.ToString()) // si il ne correspond pas au bon service
                         {
-                            TousLesPersonnels.Remove(TousLesPersonnels[i-1]);
+                            TousLesPersonnels.Remove(TousLesPersonnels[i-1]); // on le retire
                         }
                     }
-                    AfficherLesPersonnelsParFonctions(TousLesPersonnels, listeviewPersonnels, comboboxFonctions);
+                    AfficherLesPersonnelsParFonctions(TousLesPersonnels, listeviewPersonnels, comboboxFonctions); // on affiche les personnels
                 }
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-
         /// <summary>
         ///  quand on clique sur un personnel de la listeview
         /// </summary>
@@ -226,21 +220,45 @@ namespace appliWPFBDDpersonnels
             string personnel; // string correspondant au nom du personnel
             try
             {
-                if (listeviewPersonnels.SelectedItem != null)
+                if (listeviewPersonnels.SelectedItem != null) // si l'item selectionné n'est pas null
                 {
-                    personnel = listeviewPersonnels.SelectedItem.ToString(); // enregisre le nom du personnel
-                    PageUtilisateur pageUtilisateur = new PageUtilisateur(personnel); // créer une page d'affichage du personnel sélectionné
-                    pageUtilisateur.ShowDialog(); // affiche la page
+                    personnel = listeviewPersonnels.SelectedItem.ToString(); // enregisre le nom+prenom du personnel selectionné
+                    var listepersonnels = bddpersonnels.getAllPersonnels(); // recupere tous les personnels
+                    foreach(var personn in listepersonnels) // pour chaque personne de la liste
+                    {
+                        if (personnel.ToLower().ToString().Contains(personn.Nom.ToLower().ToString()) || personnel.ToLower().ToString().Contains(personn.Prenom.ToLower().ToString()))
+                        { // si le personnel selectionné est dans la liste
+                            if (personn.Photo != null) // si il possède une photo
+                            {
+                                var image = GetImageFromByte(personn.Photo); // on recupère la photo
+                                imagePersonnels.Source = image; // on affiche la photo
+
+                            }
+                            else // si il ne possède pas de photo
+                            {
+                                var path = Path.Combine(Environment.CurrentDirectory, "no_photo.jpg"); // défini le chemin de la photo
+                                var uri = new Uri(path); // défini la photo en tant que ressource compacte
+                                var bitmap = new BitmapImage(uri); // défini la photo en tant que pixels bitmap
+                                imagePersonnels.Source = bitmap; // affiche la photo
+                            }                            
+                            if (personn.Telephone != null && personn.Telephone != "") // si il possède un téléphone
+                            {
+                                labelPersonnels.Content = personn.Telephone; // on affiche la téléphone
+                            }
+                            else // si il ne possède pas de téléphone
+                            {
+                                labelPersonnels.Content = "Aucun numéro connu"; // pas de numéros
+                            }
+                            
+                        }
+                    }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            
-
+            }          
         }
-
         /// <summary>
         /// quand le text de recherche change
         /// </summary>
@@ -250,49 +268,53 @@ namespace appliWPFBDDpersonnels
         {
             try
             {
-                List<Personnel> filtre = new List<Personnel>();
-                string Name = inputNom.Text.Trim().ToLower();
-                listeviewPersonnels.Items.Clear();
-                foreach(var personne in bddpersonnels.getAllPersonnels())
-                {
-                    if (!String.IsNullOrEmpty(Name) && personne.Nom.ToLower().Contains(Name))
+                List<Personnel> filtre = new List<Personnel>(); // création de la liste que l'on va afficher
+                string Name = inputNom.Text.Trim().ToLower(); // recuperation de l'input
+                listeviewPersonnels.Items.Clear(); // on nettoie la listeview
+                if (comboboxFonctions.SelectedItem.ToString() == "Tous" && comboboxServices.SelectedItem.ToString() == "Tous")
+                { // si toutes les fonctions et tous les services sont selectionnes
+                    foreach (var personne in bddpersonnels.getAllPersonnels()) // pour chaque personne de tous les personnels
                     {
-                        filtre.Add(personne);
-                    }
-                    else if (!String.IsNullOrEmpty(Name) && personne.Prenom.ToLower().Contains(Name))
-                    {
-                        filtre.Add(personne);
-                    }
-                }
-                foreach(var personne in filtre)
-                {
-                    listeviewPersonnels.Items.Add(personne.Nom.ToString() + " " + personne.Prenom.ToString());
-                }
-               /* if (inputNom.Text != "") // vérifie l'input
-                {
-                    for (int i = listeviewPersonnels.Items.Count - 1; i >= 0; i--)
-                    {
-                        var item = listeviewPersonnels.Items[i];
-                        if (item.ToString().ToLower().Contains(inputNom.Text.ToLower()))
-                        {
-
+                        if ((personne.Nom.ToLower().Contains(Name) || personne.Prenom.ToLower().Contains(Name)))
+                        { // si cette personne contient l'input
+                            filtre.Add(personne); // on l'ajoute au filtre
                         }
-                        else
-                        {
-                            listeviewPersonnels.Items.Remove(item);
+                    }
+                }
+                else if (comboboxFonctions.SelectedItem.ToString() == "Tous")
+                { // sinon si toutes les fonction sont sélectionnées (et que tous les services ne le sont pas)
+                    foreach (var personne in bddpersonnels.getAllPersonnels()) // pour chaque personne de tous les personnels
+                    {
+                        if ((personne.Nom.ToLower().Contains(Name) || personne.Prenom.ToLower().Contains(Name)) && personne.Service.Intitule.ToString() == comboboxServices.SelectedItem.ToString())
+                        { // si cette personne contient l'input ET que son service correspond
+                            filtre.Add(personne); // on l'ajoute au filtre
+                        }
+                    }
+                }
+                else if (comboboxServices.SelectedItem.ToString() == "Tous")
+                { // sinon si tous les services sont selectionnés (et que toutes les fonctions ne le sont pas)
+                    foreach(var personne in bddpersonnels.getAllPersonnels()) // pour chaque personne de tous les personnels
+                    {
+                        if ((personne.Nom.ToLower().Contains(Name) || personne.Prenom.ToLower().Contains(Name)) && personne.Fonction.Intitule.ToString() == comboboxFonctions.SelectedItem.ToString())
+                        { // si cette personne contient l'input ET que sa fonction correspond
+                            filtre.Add(personne); // on l'ajoute au filtre
                         }
                     }
                 }
                 else
+                { // sinon si un certain service est selectionne et qu'une certaine fonction est selectionne
+                    foreach(var personne in bddpersonnels.getAllPersonnels()) // pour chaque personne de tous les personnels
+                    {
+                        if ((personne.Nom.ToLower().Contains(Name) || personne.Prenom.ToLower().Contains(Name)) && personne.Fonction.Intitule.ToString() == comboboxFonctions.SelectedItem.ToString() && personne.Service.Intitule.ToString() == comboboxServices.SelectedItem.ToString())
+                        { // si cette personne contient l'input ET que sa fonction correspond ET que son service correspond
+                            filtre.Add(personne); // on l'ajoute au filtre
+                        }
+                    }
+                }
+                foreach(var personne in filtre) // pour chaque personne du filtre
                 {
-                    /*List<Service> services = bddpersonnels.RecupererLesServices();
-                    bddpersonnels.TrierLesServices(services);
-                    AfficherServices(services, comboboxServices);
-
-                    List<Fonction> fonctions = bddpersonnels.RecupererLesFonctions();
-                    bddpersonnels.TrierLesFonctions(fonctions);
-                    AfficherFonctions(fonctions, comboboxFonctions);
-                }*/
+                    listeviewPersonnels.Items.Add(personne.Nom.ToString() + " " + personne.Prenom.ToString()); // on l'ajoute dans la listeview
+                }
             }
             catch( Exception ex)
             {
@@ -308,44 +330,51 @@ namespace appliWPFBDDpersonnels
         {
             try
             {
-                Application.Current.Shutdown();
+                Application.Current.Shutdown(); // on ferme l'application
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-
+        /// <summary>
+        /// Fait descendre la liste des services au passage de la souris
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboboxServices_MouseEnter(object sender, MouseEventArgs e)
         {
             try
             {
-                var combobox = comboboxServices;
-                if (combobox.IsInitialized == false)
+                var combobox = comboboxServices; // selection de la combobox
+                if (combobox.IsInitialized == false) // si jamais la combobox n'est pas initialisée
                 {
                     throw new Exception("La combobox n'est pas initialisée");
                 }
-                if (combobox.HasItems == false)
+                if (combobox.HasItems == false) // si jamais la combobox ne contient aucun items
                 {
                     throw new Exception("La combobox ne dispose d'aucuns items");
                 }
-                combobox.IsDropDownOpen = true;
-                //comboboxNouveau.
+                combobox.IsDropDownOpen = true; // on descend la combobox
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, ex.Source+" indique :", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
          }
-
+        /// <summary>
+        /// Fait remonter la liste des services quand la souris part
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboboxServices_IsMouseDirectlyOverChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             try
             {
-                var combobox = comboboxServices;
-                if (combobox.IsDropDownOpen == true)
+                var combobox = comboboxServices; // selection de la combobox
+                if (combobox.IsDropDownOpen == true) // si la combobox est descendue
                 {
-                    combobox.IsDropDownOpen = false;
+                    combobox.IsDropDownOpen = false; // on la remonte
                 }
             }
             catch (Exception ex)
@@ -353,41 +382,53 @@ namespace appliWPFBDDpersonnels
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-
+        /// <summary>
+        /// initialise la longueur max de la combmboxService
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboboxServices_Initialized(object sender, EventArgs e)
         {
-            comboboxServices.MaxDropDownHeight = 1080;
+            comboboxServices.MaxDropDownHeight = 1080; // définie la longueur de la liste de la combobox à 1080px maximum
         }
-
+        /// <summary>
+        /// Fait descendre la liste au passage de la souris
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboboxFonctions_MouseEnter(object sender, MouseEventArgs e)
         {
             try
             {
-                var combobox = comboboxFonctions;
-                if (combobox.IsInitialized == false)
+                var combobox = comboboxFonctions; // selection de la combobox
+                if (combobox.IsInitialized == false) // si jamais la combobox n'est pas initialisée
                 {
                     throw new Exception("La combobox n'est pas initialisée");
                 }
-                if (combobox.HasItems == false)
+                if (combobox.HasItems == false) // si jamais la combobox ne possède aucun items
                 {
                     throw new Exception("La combobox ne dispose d'aucuns items");
                 }
-                combobox.IsDropDownOpen = true;
+                combobox.IsDropDownOpen = true; // on descend la combobox
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, ex.Source + " indique :", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-
+        /// <summary>
+        ///  Fait remonter la liste des fonctions quand la souris part
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboboxFonctions_IsMouseDirectlyOverChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             try
             {
-                var combobox = comboboxFonctions;
-                if (combobox.IsDropDownOpen == true)
+                var combobox = comboboxFonctions; // selection de la combobox
+                if (combobox.IsDropDownOpen == true) // si la combobox est descendue
                 {
-                    combobox.IsDropDownOpen = false;
+                    combobox.IsDropDownOpen = false; // on la remonte
                 }
             }
             catch (Exception ex)
@@ -395,12 +436,38 @@ namespace appliWPFBDDpersonnels
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-
+        /// <summary>
+        /// initialise la longueur max de la combmboxFonction
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboboxFonctions_Initialized(object sender, EventArgs e)
         {
-            comboboxFonctions.MaxDropDownHeight = 1080;
+            comboboxFonctions.MaxDropDownHeight = 1080;  // définie la longueur de la liste de la combobox à 1080px maximum
         }
-
-
+        /// <summary>
+        /// Convertis un tableau de bytes en image Bitmap
+        /// </summary>
+        /// <param name="bitmapImag"></param>
+        /// <returns></returns>
+        public BitmapImage GetImageFromByte(byte[] bitmapImag)
+        {
+            try
+            {
+                using (MemoryStream stream = new MemoryStream(bitmapImag)) // précise une portée de ressources comprenant type tableau de bytes
+                {
+                    BitmapImage bitmapImage = new BitmapImage(); // création d'une instance BitmapImage
+                    bitmapImage.BeginInit(); // initialisation de l'instance
+                    bitmapImage.StreamSource = stream; // précise la source de flux
+                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad; // ferme le flux après création de l'image bitmap
+                    bitmapImage.EndInit(); // fin de l'initialisation
+                    return bitmapImage; // retourne l'image
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

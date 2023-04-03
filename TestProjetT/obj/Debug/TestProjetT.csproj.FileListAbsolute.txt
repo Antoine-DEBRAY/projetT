@@ -21,8 +21,6 @@ C:\1SNIR\miniProjet2023\solutionBDDpersonnels\TestProjetT\bin\Debug\Devart.Data.
 C:\1SNIR\miniProjet2023\solutionBDDpersonnels\TestProjetT\bin\Debug\Devart.Data.MySql.Linq.dll
 C:\1SNIR\miniProjet2023\solutionBDDpersonnels\TestProjetT\bin\Debug\Devart.Data.dll
 C:\1SNIR\miniProjet2023\solutionBDDpersonnels\TestProjetT\bin\Debug\Devart.Data.MySql.dll
-C:\1SNIR\miniProjet2023\solutionBDDpersonnels\TestProjetT\bin\Debug\appliWPFBDDpersonnels.pdb
-C:\1SNIR\miniProjet2023\solutionBDDpersonnels\TestProjetT\bin\Debug\appliWPFBDDpersonnels.exe.config
 C:\1SNIR\miniProjet2023\solutionBDDpersonnels\TestProjetT\bin\Debug\biblioBDDpersonnels.pdb
 C:\1SNIR\miniProjet2023\solutionBDDpersonnels\TestProjetT\bin\Debug\biblioBDDpersonnels.dll.config
 C:\1SNIR\miniProjet2023\solutionBDDpersonnels\TestProjetT\bin\Debug\Castle.Core.xml

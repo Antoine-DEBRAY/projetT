@@ -105,19 +105,6 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="T:appliWPFBDDpersonnels.PageUtilisateur">
-            <summary>
-            Logique d'interaction pour PageUtilisateur.xaml
-            </summary>
-            <summary>
-            PageUtilisateur
-            </summary>
-        </member>
-        <member name="M:appliWPFBDDpersonnels.PageUtilisateur.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
         <member name="T:appliWPFBDDpersonnels.Properties.Resources">
             <summary>
               Une classe de ressource fortement typée destinée, entre autres, à la consultation des chaînes localisées.
