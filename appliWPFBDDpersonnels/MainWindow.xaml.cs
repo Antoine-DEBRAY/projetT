@@ -107,7 +107,7 @@ namespace appliWPFBDDpersonnels
                 }
                 foreach (var personnel in personnels) // pour chaque personnel de la liste
                 {         
-                    if (comboBoxServices.SelectedItem.ToString() == personnel.Service.Intitule || comboboxServices.SelectedItem.ToString() == "Tous")
+                    if (comboBoxServices.SelectedItem == null || comboBoxServices.SelectedItem.ToString() == personnel.Service.Intitule || comboboxServices.SelectedItem.ToString() == "Tous")
                     { // 2 cas possible : soit il y a un item selectionné et on affiche le personnel correspond soit l'item sélectionné est "" est on affiche tout
                         listview.Items.Add(personnel.Nom + " " + personnel.Prenom); // affiche le nom et le prenom de la personne
                     }
@@ -135,7 +135,7 @@ namespace appliWPFBDDpersonnels
                 }
                 foreach (var personnel in personnels) // pour chaque personnel dans la liste
                 {
-                    if (comboBoxFonctions.SelectedItem.ToString() == personnel.Fonction.Intitule || comboBoxFonctions.SelectedItem.ToString() == "Tous")
+                    if (comboBoxFonctions.SelectedItem == null || comboBoxFonctions.SelectedItem.ToString() == personnel.Fonction.Intitule || comboBoxFonctions.SelectedItem.ToString() == "Tous")
                     { // 2 cas possible: soit il y a un item selectionné et on affiche le personnel correspondant soit l'item sélectionné est "" est on affiche tout
                         listview.Items.Add(personnel.Nom + " " + personnel.Prenom); // affiche le nom et le prénom de la personne 
                     }
@@ -250,7 +250,25 @@ namespace appliWPFBDDpersonnels
         {
             try
             {
-                if (inputNom.Text != "") // vérifie l'input
+                List<Personnel> filtre = new List<Personnel>();
+                string Name = inputNom.Text.Trim().ToLower();
+                listeviewPersonnels.Items.Clear();
+                foreach(var personne in bddpersonnels.getAllPersonnels())
+                {
+                    if (!String.IsNullOrEmpty(Name) && personne.Nom.ToLower().Contains(Name))
+                    {
+                        filtre.Add(personne);
+                    }
+                    else if (!String.IsNullOrEmpty(Name) && personne.Prenom.ToLower().Contains(Name))
+                    {
+                        filtre.Add(personne);
+                    }
+                }
+                foreach(var personne in filtre)
+                {
+                    listeviewPersonnels.Items.Add(personne.Nom.ToString() + " " + personne.Prenom.ToString());
+                }
+               /* if (inputNom.Text != "") // vérifie l'input
                 {
                     for (int i = listeviewPersonnels.Items.Count - 1; i >= 0; i--)
                     {
@@ -267,15 +285,14 @@ namespace appliWPFBDDpersonnels
                 }
                 else
                 {
-                    List<Service> services = bddpersonnels.RecupererLesServices();
+                    /*List<Service> services = bddpersonnels.RecupererLesServices();
                     bddpersonnels.TrierLesServices(services);
                     AfficherServices(services, comboboxServices);
 
                     List<Fonction> fonctions = bddpersonnels.RecupererLesFonctions();
                     bddpersonnels.TrierLesFonctions(fonctions);
                     AfficherFonctions(fonctions, comboboxFonctions);
-                    AfficherLesPersonnelsParFonctions(bddpersonnels.RecupererLesPersonnels(), listeviewPersonnels, comboboxFonctions);
-                }
+                }*/
             }
             catch( Exception ex)
             {
