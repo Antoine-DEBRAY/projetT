@@ -5,23 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:appliWPFBDDpersonnels"
         mc:Ignorable="d"
-        Title="Appli gestion personnels" Height="450" Width="800">
-    <Grid>
-        <ListView x:Name="listeviewPersonnels" HorizontalAlignment="Left" Height="246" Margin="24,124,0,0" VerticalAlignment="Top" Width="332" SelectionChanged="listeviewPersonnels_SelectionChanged">
+        MinHeight="500"
+        MinWidth="680"
+        Title="Appli gestion personnels" Height="650" Width="980">
+    <Grid Margin="0,0,0,0.4">
+        <ListView x:Name="listeviewPersonnels" Margin="24,124,0,9.6" MinWidth="350" SelectionChanged="listeviewPersonnels_SelectionChanged" HorizontalAlignment="Left" Width="350">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <ComboBox x:Name="comboboxFonctions" HorizontalAlignment="Left" Margin="202,29,0,0" VerticalAlignment="Top" Width="154" SelectionChanged="comboboxFonctions_SelectionChanged" IsReadOnly="True" MouseEnter="comboboxFonctions_MouseEnter" IsMouseDirectlyOverChanged="comboboxFonctions_IsMouseDirectlyOverChanged" StaysOpenOnEdit="True" Initialized="comboboxFonctions_Initialized" IsEditable="True"/>
+        <ComboBox x:Name="comboboxFonctions" HorizontalAlignment="Left" Margin="202,29,0,0" VerticalAlignment="Top" Width="154" SelectionChanged="comboboxFonctions_SelectionChanged" IsReadOnly="True" MouseEnter="comboboxFonctions_MouseEnter" IsMouseDirectlyOverChanged="comboboxFonctions_IsMouseDirectlyOverChanged" StaysOpenOnEdit="True" Initialized="comboboxFonctions_Initialized" IsEditable="True" Height="22"/>
         <TextBox x:Name="inputNom" HorizontalAlignment="Left" Height="23" Margin="68,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="238" TextChanged="inputNom_TextChanged"/>
-        <Button x:Name="boutonQuitter" Content="Quitter" HorizontalAlignment="Left" Margin="709,391,0,0" VerticalAlignment="Top" Width="75" Click="boutonQuitter_Click"/>
-        <ComboBox x:Name="comboboxServices" HorizontalAlignment="Left" Margin="24,29,0,0" VerticalAlignment="Top" Width="154" IsReadOnly="True" MouseEnter="comboboxServices_MouseEnter" IsMouseDirectlyOverChanged="comboboxServices_IsMouseDirectlyOverChanged" SelectionChanged="comboboxServices_SelectionChanged" StaysOpenOnEdit="True" Initialized="comboboxServices_Initialized" IsEditable="True"/>
-        <Label x:Name="labelServices" HorizontalContentAlignment="Center" Content="Services" HorizontalAlignment="Left" Margin="24,3,0,0" VerticalAlignment="Top" Width="154" FontWeight="Bold"/>
-        <Label x:Name="labelFonctions" HorizontalContentAlignment="Center" Content="Fonctions" HorizontalAlignment="Left" Margin="202,3,0,0" VerticalAlignment="Top" Width="154" FontWeight="Bold"/>
-        <Image x:Name="imagePersonnels" HorizontalAlignment="Left" Height="119" Margin="597,137,0,0" VerticalAlignment="Top" Width="135"/>
-        <Label x:Name="labelPersonnels" Content="" HorizontalAlignment="Left" Margin="474,137,0,0" VerticalAlignment="Top" Width="88"/>
+        <Button x:Name="boutonQuitter" MinWidth="90" Content="Quitter" Margin="0,0,11,9.6" Click="boutonQuitter_Click" Height="28" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="90"/>
+        <ComboBox x:Name="comboboxServices" HorizontalAlignment="Left" Margin="24,29,0,0" VerticalAlignment="Top" Width="154" IsReadOnly="True" MouseEnter="comboboxServices_MouseEnter" IsMouseDirectlyOverChanged="comboboxServices_IsMouseDirectlyOverChanged" SelectionChanged="comboboxServices_SelectionChanged" StaysOpenOnEdit="True" Initialized="comboboxServices_Initialized" IsEditable="True" Height="22"/>
+        <Label x:Name="labelServices" HorizontalContentAlignment="Center" Content="Services" HorizontalAlignment="Left" Margin="24,3,0,0" VerticalAlignment="Top" Width="154" FontWeight="Bold" Height="26"/>
+        <Label x:Name="labelFonctions" HorizontalContentAlignment="Center" Content="Fonctions" HorizontalAlignment="Left" Margin="202,3,0,0" VerticalAlignment="Top" Width="154" FontWeight="Bold" Height="26"/>
+        <Image x:Name="imagePersonnels" Margin="427,240,0,0" MinWidth="135" HorizontalAlignment="Left" Width="135" Height="119" VerticalAlignment="Top"/>
+        <Label x:Name="labelPersonnels" Content="" Margin="427,137,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="135" Height="26"/>
+        <Label x:Name="labelService" Content="" HorizontalAlignment="Left" Margin="427,168,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label x:Name="labelFonction" Content="" HorizontalAlignment="Left" Margin="427,199,0,0" VerticalAlignment="Top" Width="135"/>
 
     </Grid>
 </Window>

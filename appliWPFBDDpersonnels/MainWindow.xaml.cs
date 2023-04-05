@@ -157,6 +157,7 @@ namespace appliWPFBDDpersonnels
         {
             try
             {
+                listeviewPersonnels.SelectedItem = null;
                 List<Personnel> TousLesPersonnels = bddpersonnels.RecupererLesPersonnels(); // recupere les personnels
                 if (comboboxFonctions.SelectedItem == null || comboboxFonctions.SelectedItem.ToString() == "Tous") // si aucun ou toutes les fonctions sont sélectionnées
                 {
@@ -188,6 +189,7 @@ namespace appliWPFBDDpersonnels
         {
             try
             {
+                listeviewPersonnels.SelectedItem = null;
                 List<Personnel> TousLesPersonnels = bddpersonnels.RecupererLesPersonnels(); // recupere les personnels
                 if (comboboxServices.SelectedItem == null || comboboxServices.SelectedItem.ToString() == "Tous") // si aucun ou tous les services sont selectionnes
                 {
@@ -249,9 +251,31 @@ namespace appliWPFBDDpersonnels
                             {
                                 labelPersonnels.Content = "Aucun numéro connu"; // pas de numéros
                             }
-                            
+                            if (personn.Service.Intitule != null) // si il possède un service
+                            {
+                                labelService.Content = personn.Service.Intitule.ToString(); // on affiche le service
+                            }
+                            else // si il ne possède pas de service
+                            {
+                                labelService.Content = "Aucun service connu"; // pas de service
+                            }
+                            if (personn.Fonction.Intitule != null) // si il possède une fonction
+                            {
+                                labelFonction.Content = personn.Fonction.Intitule.ToString(); // on affiche la fonction
+                            }
+                            else // si il ne possède pas de fonction
+                            {
+                                labelFonction.Content = "Aucune fonction connue"; // pas de fonction
+                            }                            
                         }
                     }
+                }
+                else
+                {
+                    imagePersonnels.Source = null;
+                    labelPersonnels.Content = null;
+                    labelService.Content = null;
+                    labelFonction.Content = null;
                 }
             }
             catch (Exception ex)

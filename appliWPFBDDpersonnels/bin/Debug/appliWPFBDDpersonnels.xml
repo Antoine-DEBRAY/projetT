@@ -100,6 +100,55 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
+        <member name="M:appliWPFBDDpersonnels.MainWindow.comboboxServices_MouseEnter(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Fait descendre la liste des services au passage de la souris
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:appliWPFBDDpersonnels.MainWindow.comboboxServices_IsMouseDirectlyOverChanged(System.Object,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Fait remonter la liste des services quand la souris part
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:appliWPFBDDpersonnels.MainWindow.comboboxServices_Initialized(System.Object,System.EventArgs)">
+            <summary>
+            initialise la longueur max de la combmboxService
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:appliWPFBDDpersonnels.MainWindow.comboboxFonctions_MouseEnter(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Fait descendre la liste au passage de la souris
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:appliWPFBDDpersonnels.MainWindow.comboboxFonctions_IsMouseDirectlyOverChanged(System.Object,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+             Fait remonter la liste des fonctions quand la souris part
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:appliWPFBDDpersonnels.MainWindow.comboboxFonctions_Initialized(System.Object,System.EventArgs)">
+            <summary>
+            initialise la longueur max de la combmboxFonction
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:appliWPFBDDpersonnels.MainWindow.GetImageFromByte(System.Byte[])">
+            <summary>
+            Convertis un tableau de bytes en image Bitmap
+            </summary>
+            <param name="bitmapImag"></param>
+            <returns></returns>
+        </member>
         <member name="M:appliWPFBDDpersonnels.MainWindow.InitializeComponent">
             <summary>
             InitializeComponent
