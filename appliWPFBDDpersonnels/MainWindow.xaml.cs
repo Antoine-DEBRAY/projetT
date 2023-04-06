@@ -58,7 +58,6 @@ namespace appliWPFBDDpersonnels
             try
             {
                 comboBox.Items.Clear(); // Nettoie la combobox
-                //comboBox.SelectedValue = ""; // Met la valeur a vide
                 foreach (var service in services) // pour chaque service de la liste
                 {
                     comboBox.Items.Add(service.Intitule); // on l'ajoute dans le combobox
@@ -80,7 +79,6 @@ namespace appliWPFBDDpersonnels
             try
             {
                 comboBox.Items.Clear(); // Nettoie la combobox
-                //comboBox.SelectedValue = ""; // Met la valeur a vide
                 foreach (var fonction in fonctions) // pour chaque fonction de la liste
                 {
                     comboBox.Items.Add(fonction.Intitule); // on l'ajoute dans le combobox
@@ -111,7 +109,7 @@ namespace appliWPFBDDpersonnels
                 {         
                     if (comboBoxServices.SelectedItem.ToString() == personnel.Service.Intitule || comboboxServices.SelectedItem.ToString() == "Tous")
                     { // 2 cas possible : soit il y a un item selectionné et on affiche le personnel correspond soit l'item sélectionné est "Tous" et on affiche tout
-                        listview.Items.Add(personnel.Nom + " " + personnel.Prenom); // affiche le nom et le prenom de la personne
+                        listview.Items.Add(personnel.Nom.ToString().ToUpper() + " " + personnel.Prenom.ToString()); // affiche le nom et le prenom de la personne
                     }
                 }
             }
@@ -139,7 +137,7 @@ namespace appliWPFBDDpersonnels
                 {
                     if (comboBoxFonctions.SelectedItem.ToString() == personnel.Fonction.Intitule || comboBoxFonctions.SelectedItem.ToString() == "Tous")
                     { // 2 cas possible: soit il y a un item selectionné et on affiche le personnel correspondant soit l'item sélectionné est "Tous" et on affiche tout
-                        listview.Items.Add(personnel.Nom + " " + personnel.Prenom); // affiche le nom et le prénom de la personne
+                        listview.Items.Add(personnel.Nom.ToString().ToUpper() + " " + personnel.Prenom.ToString()); // affiche le nom et le prénom de la personne
                     }
                 }
             }
@@ -337,7 +335,7 @@ namespace appliWPFBDDpersonnels
                 }
                 foreach(var personne in filtre) // pour chaque personne du filtre
                 {
-                    listeviewPersonnels.Items.Add(personne.Nom.ToString() + " " + personne.Prenom.ToString()); // on l'ajoute dans la listeview
+                    listeviewPersonnels.Items.Add(personne.Nom.ToString().ToUpper() + " " + personne.Prenom.ToString()); // on l'ajoute dans la listeview
                 }
             }
             catch( Exception ex)
